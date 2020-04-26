@@ -1,0 +1,30 @@
+<body>
+	<div id="root">
+		<script
+			crossorigin
+			src="https://unpkg.com/react@16/umd/react.development.js"
+		></script>
+		<script
+			crossorigin
+			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+		></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script type="text/babel">
+			const rootElement = document.getElementById('root');
+
+			const element = (
+				<h2>
+					Hello, <span>World</span>
+				</h2>
+			);
+
+			ReactDOM.render(element, rootElement);
+			/*
+			const newElement = document.createElement('h2');
+			newElement.textContent = 'Hello World';
+
+			rootElement.appendChild(newElement);
+      */
+		</script>
+	</div>
+</body>
