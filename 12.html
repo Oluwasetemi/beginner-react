@@ -1,0 +1,54 @@
+<body>
+	<div id="root"></div>
+	<script
+		crossorigin
+		src="https://unpkg.com/react@16/umd/react.development.js"
+	></script>
+	<script
+		crossorigin
+		src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+	></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script
+		type="module"
+		src="https://unpkg.com/prop-types@15.7.2/prop-types.js"
+	></script>
+	<style>
+		/* chance are like keep doing what you know better opportunity will come */
+	</style>
+	<script type="text/babel">
+		const rootElement = document.getElementById('root');
+
+		function Greeting() {
+			const [name, setState] = React.useState(
+				() => window.localStorage.getItem('name') || '',
+			);
+			React.useEffect(() => {
+				window.localStorage.setItem('name', name);
+			});
+			function handleChange(e) {
+				setState(e.target.value);
+			}
+			return (
+				<div>
+					<form>
+						<label htmlFor="name">Name:</label>
+						<input
+							value={name}
+							type="text"
+							id="name"
+							onChange={handleChange}
+						/>
+					</form>
+					{name ? (
+						<strong>Hello, {name}</strong>
+					) : (
+						'Please type your name'
+					)}
+				</div>
+			);
+		}
+
+		ReactDOM.render(<Greeting />, rootElement);
+	</script>
+</body>

@@ -12,30 +12,31 @@
 		<script type="text/babel">
 			const rootElement = document.getElementById('root');
 
-			const element = React.createElement(
-				'h2',
-				{
-					style: {
-						color: 'red',
-					},
-					name: 'Ade',
-				},
-				'Dance ',
-				React.createElement('span', null, 'For me Baby'),
-			);
-			// const element = (
-			// 	<h2>
-			// 		Hello, <span>World</span>
-			// 	</h2>
+			const helloElement = React.createElement('span', null, 'Hello');
+			const worldElement = React.createElement('span', null, 'World');
+
+			// const element = React.createElement(
+			// 	React.Fragment,
+			// 	null,
+			// 	helloElement,
+			// 	worldElement,
 			// );
 
-			ReactDOM.render(element, rootElement);
-			/*
-			const newElement = document.createElement('h2');
-			newElement.textContent = 'Hello World';
+			// const element = (
+			// 	<React.Fragment>
+			// 		<span>Hello </span>
+			// 		<span>World</span>
+			// 	</React.Fragment>
+			// );
 
-			rootElement.appendChild(newElement);
-			   */
+			const element = (
+				<>
+					<span>Hello </span>
+					<span>World</span>
+				</>
+			);
+
+			ReactDOM.render(element, rootElement);
 		</script>
 	</div>
 </body>

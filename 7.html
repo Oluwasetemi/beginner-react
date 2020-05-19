@@ -9,16 +9,26 @@
 			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
 		></script>
 		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/prop-types@15.7.2/prop-types.js"
+		></script>
 		<script type="text/babel">
 			const rootElement = document.getElementById('root');
 
-			const element = (
-				<h2>
-					Hello, <span>World</span>
-				</h2>
-			);
+			function tick() {
+				const time = new Date().toLocaleTimeString();
+				const element = (
+					<div className="container">
+						<input value={time} />
+						<input value={time} />
+					</div>
+				);
 
-			ReactDOM.render(element, rootElement);
+				ReactDOM.render(element, rootElement);
+			}
+			tick();
+			setInterval(tick, 1000);
 		</script>
 	</div>
 </body>

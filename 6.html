@@ -1,0 +1,49 @@
+<body>
+	<div id="root">
+		<script
+			crossorigin
+			src="https://unpkg.com/react@16/umd/react.development.js"
+		></script>
+		<script
+			crossorigin
+			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+		></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/prop-types@15.7.2/prop-types.js"
+		></script>
+		<script type="text/babel">
+			const rootElement = document.getElementById('root');
+
+			function CharacterCount({ text }) {
+				return (
+					<div>
+						<div>
+							{`The text "${text}" has a length of `}
+							{text.length === 0 ? (
+								'no'
+							) : (
+								<strong>{text.length}</strong>
+							)}
+							{' characters'}
+						</div>
+					</div>
+				);
+			}
+
+			CharacterCount.propTypes = {
+				text: PropTypes.string.isRequired,
+			};
+
+			const element = (
+				<div className="container">
+					<CharacterCount text="Oluwasetemi" />
+					<CharacterCount text="" />
+				</div>
+			);
+
+			ReactDOM.render(element, rootElement);
+		</script>
+	</div>
+</body>

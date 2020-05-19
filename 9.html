@@ -1,0 +1,62 @@
+<body>
+	<div id="root"></div>
+	<script
+		crossorigin
+		src="https://unpkg.com/react@16/umd/react.development.js"
+	></script>
+	<script
+		crossorigin
+		src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+	></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script
+		type="module"
+		src="https://unpkg.com/prop-types@15.7.2/prop-types.js"
+	></script>
+	<style>
+		/* chance are like keep doing what you know better opportunity will come */
+	</style>
+	<script type="text/babel">
+		const rootElement = document.getElementById('root');
+
+		const state = { eventCount: 0, username: '' };
+
+		function App() {
+			function handleClick() {
+				setState({ eventCount: state.eventCount + 1 });
+			}
+			function handleOnChange(e) {
+				setState({ username: e.target.value });
+			}
+			return (
+				<div>
+					<p>There has been {state.eventCount} events</p>
+					<p>
+						<button onClick={handleClick}>Click Me</button>
+					</p>
+					<p>You typed {state.username}</p>
+					<p>
+						<input onChange={handleOnChange} />
+					</p>
+				</div>
+			);
+		}
+
+		const element = (
+			<div className="container">
+				<App />
+			</div>
+		);
+
+		function setState(newState) {
+			Object.assign(state, newState);
+			reRenderApp();
+		}
+
+		function reRenderApp() {
+			ReactDOM.render(<App />, rootElement);
+		}
+
+		reRenderApp();
+	</script>
+</body>

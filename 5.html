@@ -9,13 +9,32 @@
 			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
 		></script>
 		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/prop-types@15.7.2/prop-types.js"
+		></script>
 		<script type="text/babel">
 			const rootElement = document.getElementById('root');
 
+			function SayHello({ firstName, secondName }) {
+				return (
+					<div>
+						<h2>
+							Hello {firstName} {secondName}{' '}
+						</h2>
+					</div>
+				);
+			}
+
+			SayHello.propTypes = {
+				firstName: PropTypes.string.isRequired,
+				secondName: PropTypes.string.isRequired,
+			};
+
 			const element = (
-				<h2>
-					Hello, <span>World</span>
-				</h2>
+				<div className="container">
+					<SayHello firstName={false} />
+				</div>
 			);
 
 			ReactDOM.render(element, rootElement);
