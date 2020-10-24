@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redux 101</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script crossorigin="" src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin="" src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/expect/1.20.2/expect.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      const counter = (state = 0, action) => {
+
+        switch (action.type) {
+          case 'INCREMENT':
+            return state + 1;
+            break;
+          case 'DECREMENT':
+            return state - 1;
+            break;
+
+          default:
+            return state;
+        }
+      }
+
+      expect(counter(0, {type: 'INCREMENT'})).toEqual(1)
+      expect(counter(1, {type: 'INCREMENT'})).toEqual(2)
+      expect(counter(1, {type: 'DECREMENT'})).toEqual(1)
+
+      function App(props) {
+        return (
+          <div>
+            <p>React</p>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>

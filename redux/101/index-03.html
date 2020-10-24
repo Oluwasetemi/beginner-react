@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redux 101</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/expect/1.20.2/expect.js"></script>
+    <script src="https://wzrd.in/standalone/deep-freeze@latest"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      const counter = (state = 0, action) => {
+        switch (action.type) {
+          case "INCREMENT":
+            return state + 1;
+            break;
+          case "DECREMENT":
+            return state - 1;
+            break;
+
+          default:
+            return state;
+        }
+      };
+
+      const addCounter = (list) => {
+        return [...list, 0];
+      };
+
+      const removeCounter = (list, index) => {
+        return [...list.slice(0, index), ...list.slice(index + 1)];
+      };
+
+      const incrementCounter = (list, index) => {
+        return [
+          ...list.slice(0, index),
+          list[index] + 1, 
+          ...list.slice(index + 1),
+        ];
+      };
+
+      // const {createStore} = Redux;
+      const createStore = (reducer) => {
+        let state;
+        let listeners = [];
+
+        const getState = () => state;
+
+        const dispatch = (action) => {
+          state = reducer(state, action);
+          listeners.forEach((listener) => listener());
+        };
+
+        const subscribe = (listener) => {
+          listeners.push(listener);
+          return () => {
+            listeners = listeners.filter((l) => l !== listener);
+          };
+        };
+
+        dispatch({});
+
+        return { getState, dispatch, subscribe };
+      };
+      // const store = createStore(counter);
+      // console.log(store.getState())
+      // store.dispatch({type: 'INCREMENT'})
+      // console.log(store.getState())
+
+      // const render = () => {
+      //   ReactDOM.render(<Counter value={store.getState()} onIncrement={() => store.dispatch({type: 'INCREMENT'})} onDecrement={() => store.dispatch({type: 'DECREMENT'})}/>, root);
+      // }
+      // store.subscribe(render);
+      // render()
+
+      const testAddCounter = () => {
+        const listBefore = [];
+        const listAfter = [0];
+
+        deepFreeze(listBefore);
+
+        expect(addCounter(listBefore)).toEqual(listAfter);
+      };
+
+      const testRemoveCounter = () => {
+        const listBefore = [0, 1, 2];
+        const listAfter = [0, 2];
+
+        deepFreeze(listBefore);
+
+        expect(removeCounter(listBefore, 1)).toEqual(listAfter);
+      };
+
+      const testIncrementCounter = () => {
+        const listBefore = [0, 1, 2];
+        const listAfter = [0, 2, 2];
+
+        deepFreeze(listBefore);
+
+        expect(incrementCounter(listBefore, 1)).toEqual(listAfter);
+      };
+
+      testAddCounter();
+      testRemoveCounter();
+      testIncrementCounter();
+      console.log("All tests passed");
+
+      function App(props) {
+        return (
+          <div>
+            <p>React</p>
+          </div>
+        );
+      }
+      function Counter({ value, onDecrement, onIncrement }) {
+        return (
+          <>
+            <button onClick={onDecrement}>-</button>
+            <p>{value}</p>
+            <button onClick={onIncrement}>+</button>
+          </>
+        );
+      }
+    </script>
+  </body>
+</html>
