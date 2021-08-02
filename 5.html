@@ -1,18 +1,9 @@
 <body>
 	<div id="root">
-		<script
-			crossorigin
-			src="https://unpkg.com/react@16/umd/react.development.js"
-		></script>
-		<script
-			crossorigin
-			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-		></script>
+		<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-		<script
-			type="module"
-			src="https://unpkg.com/prop-types@15.7.2/prop-types.js"
-		></script>
+		<script type="module" src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 		<script type="text/babel">
 			const rootElement = document.getElementById('root');
 
@@ -31,9 +22,23 @@
 				secondName: PropTypes.string.isRequired,
 			};
 
+			let a = ['opeyemi, ade', 'ojo, oluwasetemi'].map((name) => {
+				let [fName, SName] = name.split(', ')
+				console.log(fName)
+				console.log(SName)
+				return <SayHello firstName={fName} secondName={SName} />
+			})
+			// console.log(a)
+
 			const element = (
 				<div className="container">
-					<SayHello firstName={false} />
+					<SayHello firstName={'ade'} secondName="shola	" />
+					<SayHello firstName={'opeyemi'} secondName="ori	" />
+
+					{['opeyemi, ade', 'ojo, oluwasetemi'].map((name, index) => {
+						let [fName, SName] = name.split(', ')
+						return <SayHello key={index} firstName={fName} secondName={SName} />
+					})}
 				</div>
 			);
 

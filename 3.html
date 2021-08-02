@@ -1,13 +1,7 @@
 <body>
 	<div id="root">
-		<script
-			crossorigin
-			src="https://unpkg.com/react@16/umd/react.development.js"
-		></script>
-		<script
-			crossorigin
-			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-		></script>
+		<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 		<script type="text/babel">
 			const rootElement = document.getElementById('root');
@@ -15,12 +9,12 @@
 			const helloElement = React.createElement('span', null, 'Hello');
 			const worldElement = React.createElement('span', null, 'World');
 
-			// const element = React.createElement(
-			// 	React.Fragment,
-			// 	null,
-			// 	helloElement,
-			// 	worldElement,
-			// );
+			const element = React.createElement(
+				React.Fragment,
+				null,
+				helloElement,
+				worldElement,
+			);
 
 			// const element = (
 			// 	<React.Fragment>
@@ -29,12 +23,12 @@
 			// 	</React.Fragment>
 			// );
 
-			const element = (
-				<>
-					<span>Hello </span>
-					<span>World</span>
-				</>
-			);
+			// const element = (
+			// 	<>
+			// 		<span>Hello </span>
+			// 		<span>World</span>
+			// 	</>
+			// );
 
 			ReactDOM.render(element, rootElement);
 		</script>
